@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinkit Clone</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .product-card {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .cart-sidebar {
+            transition: right 0.3s ease-in-out;
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_x7J6hL8-f3r3f7j9f9hL8-f3r3f7j9f9hL8-f3r3f7j9f9hL8-f3r3f7j9f9" alt="Blinkit Logo" class="h-8 md:h-10 w-auto">
+                <span class="text-2xl font-bold text-gray-800">blinkit</span>
+            </div>
+            <div class="relative w-full max-w-lg mx-4 md:mx-10">
+                <input type="text" placeholder="Search products..." class="w-full px-4 py-2 pl-10 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500">
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            <button id="cart-button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-lg shadow-md transition-colors duration-200 flex items-center space-x-2">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.185 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4z" />
+                </svg>
+                <span id="cart-item-count">0 items</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6 flex flex-col md:flex-row gap-6 flex-grow">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-1/4 lg:w-1/5 bg-white p-4 md:p-6 rounded-xl shadow-lg h-fit hidden md:block">
+            <nav class="space-y-4">
+                <div class="text-lg font-semibold text-gray-700 mb-4">Categories</div>
+                <ul class="space-y-3">
+                    <li class="flex items-center space-x-3 text-gray-600 hover:text-green-600 transition-colors duration-200 cursor-pointer">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <span>Fruit</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-gray-600 hover:text-green-600 transition-colors duration-200 cursor-pointer">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <span>Mixed fruits</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-gray-600 hover:text-green-600 transition-colors duration-200 cursor-pointer">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <span>Fresh fruit</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-gray-600 hover:text-green-600 transition-colors duration-200 cursor-pointer">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <span>Mix dry fruits</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-gray-600 hover:text-green-600 transition-colors duration-200 cursor-pointer">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <span>Fruit salad</span>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Product Grid -->
+        <section class="flex-grow">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Showing results for "fruits"</h2>
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Product cards will be rendered here by JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <aside id="cart-sidebar" class="cart-sidebar fixed top-0 right-0 w-full md:w-96 h-full bg-white z-50 transform translate-x-full overflow-y-auto p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-2xl font-bold text-gray-800">My Cart</h3>
+            <button id="close-cart-button" class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="mb-4 text-sm text-green-600 font-semibold">
+            Your total savings: ₹<span id="total-savings">0</span>
+        </div>
+
+        <div id="delivery-info" class="bg-gray-50 p-4 rounded-lg flex items-start space-x-3 mb-6">
+            <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+                <p class="text-sm font-semibold text-gray-700">Delivery in <span id="delivery-time">8</span> minutes</p>
+                <p class="text-xs text-gray-500">Shipment of <span id="cart-item-count-2">0</span> items</p>
+            </div>
+        </div>
+
+        <div id="cart-items" class="space-y-4 mb-8">
+            <!-- Cart items will be rendered here by JS -->
+        </div>
+
+        <!-- Bill Details -->
+        <div class="bg-white p-4 rounded-xl border border-gray-200 mb-4">
+            <h4 class="text-lg font-semibold text-gray-800 mb-4">Bill details</h4>
+            <div class="space-y-2 text-sm text-gray-600">
+                <div class="flex justify-between">
+                    <span>Items total <span class="text-green-600 font-semibold">(Savings ₹<span id="bill-savings">0</span>)</span></span>
+                    <span>₹<span id="bill-subtotal">0</span></span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Delivery charge</span>
+                    <span>₹7</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Handling charge</span>
+                    <span>₹2</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Small cart charge</span>
+                    <span>₹0</span>
+                </div>
+                <div class="flex justify-between font-bold text-gray-800 text-lg border-t pt-4 mt-4">
+                    <span>Grand total</span>
+                    <span>₹<span id="bill-grandtotal">0</span></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Button -->
+        <button id="checkout-button" class="w-full bg-green-600 text-white font-bold py-4 rounded-xl text-center text-lg mt-4 shadow-lg hover:bg-green-700 transition-colors duration-200">
+            <span id="checkout-total">₹0</span> TOTAL <span class="text-sm font-normal">| Login to Proceed ></span>
+        </button>
+    </aside>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const products = [
+                { id: 1, name: 'kiwi', description: '1 dozen', image: "https:cdn.britannica.com/45/126445-050-4C0FA9F6/Kiwi-fruit.jpg", delivery_time: '11 MINS',price: 37, original_price: 52, discount_percent: 29 },
+                { id: 2, name: 'Thai Guava (500 g - 700 g)', description: '2 pieces (600 g - 700 g)', image: "https:www.health.com/thmb/XlWTD8TZF5574DVtMEfD-XSj5Lg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Guava-15d1050d22034909bfca038ef1f8aaa2.jpg", price: 58, original_price: 85, discount_percent: 31, delivery_time: '11 MINS' },
+                { id: 3, name: 'Brown Coconut (Tenangakayi)', description: '1 piece', image: "https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPyToVkx6D_osLcMxDv8OTOslc4di2GJ2hwg&s", price: 37, original_price: 52, discount_percent: 29, delivery_time: '11 MINS' },
+                { id: 4, name: ' Banana ', description: '6 pieces', image: "https:nutritionsource.hsph.harvard.edu/wp-content/uploads/2018/08/bananas-1354785_1920.jpg", price: 32, original_price: 50, discount_percent: 36, delivery_time: '11 MINS' },
+                { id: 5, name: 'orange', description: '1 unit', image: "https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTct4QnA6zwU4tyn9vq_ADJ8Ey6RfIWK-6V6g&s", price: 1199, original_price: 1899, discount_percent: 37, delivery_time: '23 MINS' },
+                { id: 6, name: 'dragon fruit', description: '1 piece', image: "https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxGWmsE5RpaPLouomtfMfQnu9lS5p5CnN1sg&s", price: 70, original_price: 92, discount_percent: 24, delivery_time: '11 MINS' }
+            ];
+
+            const cart = [];
+            const productGrid = document.getElementById('product-grid');
+            const cartButton = document.getElementById('cart-button');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const closeCartButton = document.getElementById('close-cart-button');
+            const overlay = document.getElementById('overlay');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartItemCount = document.getElementById('cart-item-count');
+            const cartItemCount2 = document.getElementById('cart-item-count-2');
+            const totalSavingsSpan = document.getElementById('total-savings');
+            const billSubtotalSpan = document.getElementById('bill-subtotal');
+            const billSavingsSpan = document.getElementById('bill-savings');
+            const billGrandTotalSpan = document.getElementById('bill-grandtotal');
+            const checkoutTotalSpan = document.getElementById('checkout-total');
+
+            // --- UI FUNCTIONS ---
+
+            const renderProductCards = () => {
+                productGrid.innerHTML = '';
+                products.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card bg-white p-4 rounded-xl shadow-lg relative flex flex-col items-center text-center';
+
+                    const cartItem = cart.find(item => item.id === product.id);
+                    const quantity = cartItem ? cartItem.quantity : 0;
+                    const isAdded = quantity > 0;
+
+                    card.innerHTML = `
+                        <div class="absolute top-2 left-2 bg-blue-500 text-white text-xs font-bold py-1 px-2 rounded-lg z-10">
+                            ${product.discount_percent}% OFF
+                        </div>
+                        <img src="${product.image}" alt="${product.name}" class="h-40 w-full object-contain mb-4">
+                        <div class="text-xs text-gray-400 font-semibold mb-1">${product.delivery_time}</div>
+                        <h3 class="text-sm font-semibold text-gray-800 mb-1">${product.name}</h3>
+                        <p class="text-xs text-gray-500 mb-2">${product.description}</p>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="text-lg font-bold text-gray-800">₹${product.price}</span>
+                            <span class="text-sm text-gray-400 line-through">₹${product.original_price}</span>
+                        </div>
+                        <div data-product-id="${product.id}" class="w-full">
+                            ${isAdded ? `
+                                <div class="flex items-center justify-center space-x-2 bg-green-500 text-white rounded-lg p-2 font-bold w-full">
+                                    <button class="decrement-btn p-1 flex items-center justify-center rounded-l-lg hover:bg-green-600 transition-colors duration-200">-</button>
+                                    <span class="quantity-display text-base">${quantity}</span>
+                                    <button class="increment-btn p-1 flex items-center justify-center rounded-r-lg hover:bg-green-600 transition-colors duration-200">+</button>
+                                </div>
+                            ` : `
+                                <button class="add-btn w-full bg-green-500 text-white font-bold py-2 rounded-lg hover:bg-green-600 transition-colors duration-200">ADD</button>
+                            `}
+                        </div>
+                    `;
+                    productGrid.appendChild(card);
+                });
+            };
+
+            const renderCartItems = () => {
+                cartItemsContainer.innerHTML = '';
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<p class="text-center text-gray-500">Your cart is empty.</p>';
+                } else {
+                    cart.forEach(item => {
+                        const cartItemEl = document.createElement('div');
+                        cartItemEl.className = 'flex items-center space-x-4 p-4 bg-white rounded-lg shadow-sm';
+                        cartItemEl.innerHTML = `
+                            <img src="${item.image}" alt="${item.name}" class="h-16 w-16 object-cover rounded-md">
+                            <div class="flex-grow">
+                                <h4 class="text-sm font-semibold text-gray-800">${item.name}</h4>
+                                <p class="text-xs text-gray-500">${item.description}</p>
+                                <div class="flex items-center space-x-2 mt-1">
+                                    <span class="text-sm font-bold text-gray-800">₹${item.price}</span>
+                                    <span class="text-xs text-gray-400 line-through">₹${item.original_price}</span>
+                                </div>
+                            </div>
+                            <div data-product-id="${item.id}" class="flex items-center space-x-1 bg-green-500 text-white rounded-lg p-1 font-bold">
+                                <button class="decrement-btn p-1 hover:bg-green-600 transition-colors duration-200 rounded-l-lg">-</button>
+                                <span class="quantity-display text-sm">${item.quantity}</span>
+                                <button class="increment-btn p-1 hover:bg-green-600 transition-colors duration-200 rounded-r-lg">+</button>
+                            </div>
+                        `;
+                        cartItemsContainer.appendChild(cartItemEl);
+                    });
+                }
+            };
+
+            const updateCartTotals = () => {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const totalSavings = cart.reduce((sum, item) => sum + ((item.original_price - item.price) * item.quantity), 0);
+                const grandTotal = subtotal + 7 + 2; // Fixed charges from the screenshot
+
+                // Update header
+                cartItemCount.textContent = `${totalItems} items`;
+                // Update cart sidebar
+                cartItemCount2.textContent = totalItems;
+                totalSavingsSpan.textContent = totalSavings;
+                billSubtotalSpan.textContent = subtotal;
+                billSavingsSpan.textContent = totalSavings;
+                billGrandTotalSpan.textContent = grandTotal;
+                checkoutTotalSpan.textContent = `₹${grandTotal}`;
+            };
+
+            // --- EVENT LISTENERS ---
+
+            // Toggle cart sidebar
+            cartButton.addEventListener('click', () => {
+                cartSidebar.classList.remove('translate-x-full');
+                cartSidebar.style.right = '0';
+                overlay.classList.remove('hidden');
+            });
+
+            closeCartButton.addEventListener('click', () => {
+                cartSidebar.classList.add('translate-x-full');
+                cartSidebar.style.right = '-100%';
+                overlay.classList.add('hidden');
+            });
+
+            overlay.addEventListener('click', () => {
+                closeCartButton.click();
+            });
+
+            // Handle add/remove buttons
+            productGrid.addEventListener('click', (e) => {
+                const btn = e.target.closest('.add-btn, .increment-btn, .decrement-btn');
+                if (!btn) return;
+
+                const card = e.target.closest('[data-product-id]');
+                const productId = parseInt(card.dataset.productId);
+                const product = products.find(p => p.id === productId);
+
+                if (btn.classList.contains('add-btn') || btn.classList.contains('increment-btn')) {
+                    const existingItem = cart.find(item => item.id === productId);
+                    if (existingItem) {
+                        existingItem.quantity++;
+                    } else {
+                        cart.push({ ...product, quantity: 1 });
+                    }
+                } else if (btn.classList.contains('decrement-btn')) {
+                    const existingItem = cart.find(item => item.id === productId);
+                    if (existingItem) {
+                        existingItem.quantity--;
+                        if (existingItem.quantity <= 0) {
+                            const itemIndex = cart.findIndex(item => item.id === productId);
+                            cart.splice(itemIndex, 1);
+                        }
+                    }
+                }
+
+                // Re-render both grids and update totals
+                renderProductCards();
+                renderCartItems();
+                updateCartTotals();
+            });
+
+            // Handle cart sidebar buttons
+            cartItemsContainer.addEventListener('click', (e) => {
+                const btn = e.target.closest('.increment-btn, .decrement-btn');
+                if (!btn) return;
+
+                const cartItemEl = e.target.closest('[data-product-id]');
+                const productId = parseInt(cartItemEl.dataset.productId);
+                const existingItem = cart.find(item => item.id === productId);
+
+                if (btn.classList.contains('increment-btn')) {
+                    existingItem.quantity++;
+                } else if (btn.classList.contains('decrement-btn')) {
+                    existingItem.quantity--;
+                    if (existingItem.quantity <= 0) {
+                        const itemIndex = cart.findIndex(item => item.id === productId);
+                        cart.splice(itemIndex, 1);
+                    }
+                }
+
+                // Re-render cart and product grid
+                renderCartItems();
+                renderProductCards();
+                updateCartTotals();
+            });
+
+            // Initial render
+            renderProductCards();
+            renderCartItems();
+            updateCartTotals();
+        });
+    </script>
+</body>
+</html>
+

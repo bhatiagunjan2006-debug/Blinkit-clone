@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blinkit Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #00b14f;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h2 {
+      margin: 0;
+    }
+
+    .admin-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h3 {
+      color: #333;
+      border-bottom: 2px solid #00b14f;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    input, select, button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="text"], input[type="number"], input[type="url"] {
+      width: 48%;
+    }
+
+    button {
+      background-color: #00b14f;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 10px 20px;
+    }
+
+    button:hover {
+      background-color: #009a45;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #00b14f;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Blinkit Admin Panel</h2>
+    <a href="index.html" style="color:white;text-decoration:none;">Go to Website</a>
+  </header>
+
+  <div class="admin-container">
+    <h3>Add New Product (Fruits)</h3>
+
+    <form id="productForm">
+      <input type="text" id="pname" placeholder="Product Name" required>
+      <input type="number" id="pprice" placeholder="Price (₹)" required>
+      <input type="url" id="pimage" placeholder="Image URL" required>
+      <input type="text" id="pcategory" value="Fruits" readonly>
+      <button type="submit">Add Product</button>
+    </form>
+
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price (₹)</th>
+          <th>Category</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const form = document.getElementById("productForm");
+    const tableBody = document.querySelector("#productTable tbody");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("pname").value;
+      const price = document.getElementById("pprice").value;
+      const image = document.getElementById("pimage").value;
+      const category = document.getElementById("pcategory").value;
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><img src="${image}" width="50"></td>
+        <td>${name}</td>
+        <td>₹${price}</td>
+        <td>${category}</td>
+        <td><button onclick="deleteRow(this)">Delete</button></td>
+      `;
+      tableBody.appendChild(row);
+
+      form.reset();
+      document.getElementById("pcategory").value = "Fruits";
+    });
+
+    function deleteRow(btn) {
+      btn.parentElement.parentElement.remove();
+    }
+  </script>
+
+</body>
+</html>

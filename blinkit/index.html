@@ -1,0 +1,63 @@
+`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blinkit Clone</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">blink<span>it</span></div>
+    <div class="location">
+      <p>Delivery in <strong>10 minutes</strong></p>
+      <small>Rajkot, Gujarat</small>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="search-bar" placeholder="Search for products...">
+    </div>
+    <nav>
+      <a href="/login.html">Login</a>
+      <a href="cart.html" class="cart-btn">🛒 My Cart</a>
+    </nav>
+  </header>
+
+  <!-- HERO SLIDER -->
+  <section class="hero">
+    <div class="slider" id="slider">
+      <div class="slide">
+        <img src="images/slide-1.jpg" alt="Slide 1" class = "slide-image">
+      </div>
+      <div class="slide">
+        <img src="images/slide-2.jpg" alt="Slide 2" class = "slide-image">
+      </div>
+      <div class="slide">
+        <img src="images/slide-3.jpg" alt="Slide 3" class = "slide-image">
+      </div>
+    </div>
+    <div class="slide">
+        <img src="images/slide-3.jpg" alt="Slide a" class = "slide-image">
+      </div>
+    </div>
+
+    <div class="slider-controls">
+      <button class="prev">❮</button>
+      <button class="next">❯</button>
+    </div>
+  </section>
+
+<section class="categories"></section>
+
+  <!-- CATEGORY SCROLL -->
+  <section class="categories">
+    <h2>Shop by Category</h2>
+    <div class="category-scroll" id="category-list"></div>
+  </section>
+
+  <!-- PRODUCT SECTIONS -->
+  <section id="product-sections"></section>
+
+  <script src="scripts/script.js"></script>
+</body>
+</html>

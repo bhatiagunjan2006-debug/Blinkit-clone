@@ -1,0 +1,30 @@
+{
+  "categories": [
+    { "id": "fruits", "name": "Fruits & Vegetables", "image": "images/fruits.avif" },
+    { "id": "dairy", "name": "Dairy & Bread", "image": "images/dairy.png" },
+    { "id": "snacks", "name": "Snacks & Munchies", "image": "images/snacks.png" },
+    { "id": "sweet", "name": "sweet thooth", "image":" https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-7_3.png "},
+    { "id": "medicine", "name": "phama and wellness", "image":"https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-16.png"},
+ { "id": "cleaning", "name": "cleaning and essentials", "image":"https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-17.png"},
+   { "id": "Home", "name": "Home and office", "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-18.png" },
+{ "id": "care", "name": "personal care", "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-19.png" },
+{ "id": "pet", "name": "pet care", "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-20.png" },
+{ "id": "Rashan", "name": "Atta,Rice,Dal","image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-10.png" },
+{ "id": "beverages", "name": "Cold drink and juice", "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-4_9.png" },
+{ "id": "Home", "name": "Home and office", "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-18.png" },
+{ "id": "heath", "name": "Organic and healthy living", "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-14.png" }
+
+
+
+  ],
+  "products": [
+    { "id": 1, "name": "Fresh Apples", "price": 120, "image":" https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/e1d7c538-bade-4d6d-9a6c-cca7cea3931d.png", "category": "fruits" },
+    { "id": 2, "name": "Bananas", "price": 60, "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/b89fe4bd-2018-4502-a80e-d8dc274955b8.png", "category": "fruits" },
+    { "id": 3, "name": "Milk 1L", "price": 55, "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/852a402a-54ac-41d5-9263-187f4b077171.png", "category": "dairy" },
+    { "id": 4, "name": "Bread", "price": 40, "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/1714817b-3586-4e03-a915-f15987e716bd.png", "category": "dairy" },
+    { "id": 5, "name": "Potato Chips", "price": 35, "image": "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/f55e87f5-ecab-4d91-aca9-62883084374d.png", "category": "snacks" },
+     { "id": 6, "name": "Dragon fruit", "price": 79, "image":" https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/a285c923-5a02-459d-b4ca-51cec43ce9b6.png", "category": "fruits" },
+     { "id": 7, "name": "Red chilli", "price": 25, "image":" https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/b4992782-f47e-4fda-a0c6-4c9e422b9654.png ","category": "snacks" },
+     { "id": 8, "name": "Guava", "price": 15, "image":" https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/6ba45e01-b4bc-4fe5-b4e8-d8814f8eda77.png","category": "fruits" }, 
+     { "id": 9, "name": "Mini Orange", "price": 35, "image":" https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=360/da/cms-assets/cms/product/18d8a52f-e59e-40ef-8d7e-e4d469a2ecf6.png","category": "fruits" }]
+}
